@@ -25,6 +25,8 @@ In events/onapplicationstart.cfm place this code:
 ValidateThisConfig = {JSRoot="/javascripts/",definitionPath="/models/"};
 application.ValidateThis = createObject("component","ValidateThis.ValidateThis").init(ValidateThisConfig);
 </cfscript>
+
+Place the validateThis-0.1.zip plugin in the plugins folder.
  
 Unzip the validateThisCFWheels.zip file into CFWheel's webroot.
  
