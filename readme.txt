@@ -1,4 +1,4 @@
-Using ValidateThis with CFWheels
+CFWheels with ValidateThis http://validatethis.riaforge.org/
 
 requires:
 # CFWheels 0.9.4
