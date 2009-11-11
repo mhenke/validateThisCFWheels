@@ -35,6 +35,9 @@ You should be good to go now.
  
 ADDITIONAL FOR DEMO
 
+Follow the instructions in ValidateThis to setup the tables and datasource.
+/ValidateThis/docs/DemoSetup.txt
+
 In config/settings.cfm place this code:
 <cfset set(dataSourceName="vtDemo")>
  
