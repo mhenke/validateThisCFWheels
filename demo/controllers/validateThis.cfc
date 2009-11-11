@@ -1,15 +1,15 @@
 <cfcomponent extends="Controller">
 
 	<cffunction name="init">
-		 <cfset filters("setupDemo")>
-		 <cfset filters("validate") >
+		 <cfset filters(through="setupDemo,validateJS",only="index") >
 	</cffunction>
 	
 	<cffunction name="create">
-	
+		<!--- populate user object with form values --->
+		<cfset User = model("user").new(params.userTo) />
+		
 		<!--- Validate the object using ValidateThis! --->
-		<cfset Result = application.ValidateThis.validate(objectType="User",theObject=UserTO,Context=params.Context) />
-		<cfset UniFormErrors = Result.getFailuresForUniForm(locale="fr_FR") />
+		<cfset Result = application.ValidateThis.validate(theObject=UserTO,objectType="User",Context=params.Context,results=params.userTo) />
 
 		<!--- If validations passed, save the record --->
 		<cfif Result.getIsSuccess()>
@@ -64,7 +64,7 @@
 		<cfset usergroup = model("UserGroup").findAll() />
 	</cffunction>
 	
-	<cffunction name="validate">
+	<cffunction name="validateJS">
 		<!--- Get the list of required fields to use to dynamically add asterisks in front of each field --->
 		<cfset RequiredFields = application.ValidateThis.getRequiredFields(objectType="User",Context=params.Context) />
 		

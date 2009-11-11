@@ -3,8 +3,19 @@
 		<cfset this.version = "0.9.4">
 		<cfreturn this>
 	</cffunction>
+	
+	<cffunction name="validateThis">
+		<cfscript>
+		ValidateThisConfig = {JSRoot="/javascripts/",definitionPath="/models/"};
+		application.ValidateThis = createObject("component","ValidateThis.ValidateThis").init(ValidateThisConfig);
+		</cfscript>
+		<cfreturn application.ValidateThis>
+	</cffunction>
 			 
 	<cffunction name="validateThisField" returntype="string" access="public" output="false">
+		<cfargument name="property" type="String" required="true" />
+		<cfargument name="label" type="String" required="true" />
+		<cfargument name="validationMessage" type="String" default="" />
 		
 		<cfset var return = "" />
 		
@@ -19,6 +30,10 @@
 	</cffunction>
 	
 	<cffunction name="validateThisSelect" returntype="string" access="public" output="false">
+		<cfargument name="property" type="String" required="true" />
+		<cfargument name="label" type="String" required="true" />
+		<cfargument name="validationMessage" type="String" default="" />
+	
 		<cfset var return = "" />
 		
 		<cfset arguments.id = arguments.property />

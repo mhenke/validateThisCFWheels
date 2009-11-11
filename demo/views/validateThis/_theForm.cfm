@@ -62,10 +62,31 @@
 	
 	<fieldset class="inlineLabels">
 		<legend>User Information</legend>
-		#textField(label="Salutation", objectName="UserTO", property="salutation", prependToLabel="<div class='ctrlHolder'>", append='</div>', labelPlacement="before",class="textInput",id="Salutation")#
-		#textField(label="First Name", objectName="UserTO", property="firstname", prependToLabel="<div class='ctrlHolder'>", append='</div>', labelPlacement="before",class="textInput",id="FirstName")#
-		#textField(label="Last Name", objectName="UserTO", property="lastname", prependToLabel="<div class='ctrlHolder'>", append='</div>', labelPlacement="before",class="textInput",id="LastName")#
-
+		
+		#validateThisField(
+			formHelper="textField",
+  			label="Salutation",
+            objectName="UserTO",
+			labelPlacement="before",
+            property="Salutation",
+			class="textInput")#
+			
+		#validateThisField(
+			formHelper="textField",
+  			label="First Name",
+            objectName="UserTO",
+			labelPlacement="before",
+            property="FirstName",
+			class="textInput")#
+		
+		#validateThisField(
+			formHelper="textField",
+  			label="Last Name",
+            objectName="UserTO",
+			labelPlacement="before",
+            property="LastName",
+			class="textInput")#
+		
 		<div class="ctrlHolder">
 		<p class="label">Do you like Cheese?</p>
 		#radioButtonTag(label="Yes", name="likeCheese", value="1", labelPlacement="after", class="inlineLabel", for="LikeCheese-1", checked=iif(userTo.likeCheese EQ 1,true,false),class="inlineLabel",id="LikeCheese-1")#
@@ -78,8 +99,21 @@
 		#radioButtonTag(label="No", name="likeChocolate", value="No", labelPlacement="after", class="inlineLabel", checked=iif(userTo.likeChocolate EQ 0,true,false),class="inlineLabel",id="likeChocolate-1")#
 		</div>
 		
-		#textField(label="What do you like?", objectName="UserTO", property="LikeOther", prependToLabel="<div class='ctrlHolder'>", append='</div>', labelPlacement="before",class="textInput",id="LikeOther")#
-		#textField(label="How much money would you like", objectName="UserTO", property="howMuch", prependToLabel="<div class='ctrlHolder'>", append='</div>', labelPlacement="before", class="textInput", id="HowMuch")#
+		#validateThisField(
+			formHelper="textField",
+  			label="What do you like?",
+            objectName="UserTO",
+			labelPlacement="before",
+            property="LikeOther",
+			class="textInput")#
+		
+		#validateThisField(
+			formHelper="textField",
+  			label="How much money would you like?",
+            objectName="UserTO",
+			labelPlacement="before",
+            property="howMuch",
+			class="textInput")#
 		
 		<div class="ctrlHolder">
 		<p class="label">Allow Communitcation</p>
