@@ -1,9 +1,11 @@
-CFWheels with ValidateThis http://validatethis.riaforge.org/
+CFWheels with ValidateThis 
+
+http://cfwheels.riaforge.org/
+http://validatethis.riaforge.org/
 
 requires:
 # CFWheels 0.9.4
 # ValidateThis 0.851
-# Setup ValidateThis demo tables (see ValidateThis instructions for demos)
  
 Download ValidateThis
 Unzip validateThis's zip and place the validateThis folder in webroot of with the cfwheels application.
@@ -37,6 +39,7 @@ ADDITIONAL FOR DEMO
 
 Follow the instructions in ValidateThis to setup the tables and datasource.
 /ValidateThis/docs/DemoSetup.txt
+http://github.com/bobsilverberg/ValidateThis/blob/master/ValidateThis/docs/DemoSetup.txt
 
 In config/settings.cfm place this code:
 <cfset set(dataSourceName="vtDemo")>
