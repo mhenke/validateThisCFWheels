@@ -6,7 +6,7 @@
 	
 	<cffunction name="validateThis">
 		<cfscript>
-		ValidateThisConfig = {JSRoot="/javascripts/",definitionPath="/models/"};
+		ValidateThisConfig = {JSRoot="/javascripts/",definitionPath="/models/",propertyMode="cfwheels"};
 		application.ValidateThis = createObject("component","ValidateThis.ValidateThis").init(ValidateThisConfig);
 		</cfscript>
 		<cfreturn application.ValidateThis>
