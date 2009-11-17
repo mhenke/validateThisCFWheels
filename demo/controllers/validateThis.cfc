@@ -9,7 +9,7 @@
 		<cfset User = model("user").new(params.userTo) />
 		
 		<!--- Validate the object using ValidateThis! --->
-		<cfset Result = application.ValidateThis.validate(theObject=UserTO,objectType="User",Context=params.Context,results=params.userTo) />
+		<cfset Result = application.ValidateThis.validate(theObject=User,objectType="User",Context=params.Context,results=params.userTo) />
 
 		<!--- If validations passed, save the record --->
 		<cfif Result.getIsSuccess()>
