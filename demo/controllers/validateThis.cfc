@@ -1,53 +1,38 @@
 <cfcomponent extends="Controller">
 
 	<cffunction name="init">
-		 <cfset filters(through="setupDemo,validateJS",only="index") >
+		 <cfset filters(through="setupDemo,validateJS",only="index,create") >
 	</cffunction>
 	
 	<cffunction name="create">
+		
 		<!--- populate user object with form values --->
-		<cfset User = model("user").new(params.userTo) />
+		<cfset User = model("user").new(params.User) />
 		
-		<!--- Validate the object using ValidateThis! --->
-		<cfset Result = application.ValidateThis.validate(theObject=User,objectType="User",Context=params.Context,results=params.userTo) />
+		<!--- populate user object with form values --->
+		<cfset User = model("user").new(params.User) />
 
-		<!--- If validations passed, save the record --->
-		<cfif Result.getIsSuccess()>
-			<cfset UserTO.save() />
-			<cfset SuccessMessage = "The User has been saved!" />
-		<cfelse>
-			<cfset SuccessMessage = "" />
-		</cfif>
-		
-	 	<cfset existsUser = model("user").exists(key=params.userTo.userid) />
-		
+		<cfset existsUser = model("user").exists(key=params.userid) />
+
 		<cfif existsUser>
-			<cfset result = model("user").updateByKey(params.userTo.userid, params.userTo)>
+			<cfset resultSave = model("user").updateByKey(params.userid, params.User)>
 		<cfelse>
-			<cfset newUser = model("user").new(params.userTo) />
-			<cfset result = newUser.Save()>
-		</cfif>
-
-		<cfif result>
-			<cfset flashInsert(success="User #params.userTo.userid# saved successfully.") />
-		<cfelse>
-			<cfset flashInsert(success="User #params.userTo.userid# NOT SAVED successfully.") />
+			<cfset resultSave = User.Save()>
 		</cfif>
 		
 		<cfset renderPage(action="index") />
 	</cffunction>
 	
 	<cffunction name="index">
-		<cfset userTo = model("user").findOne(where="userid=#params.userTo.userid#", include="usergroup")>
-		<!--- <cfset UserTO = model("User").findOne(where="userid=#params.userTo.userid#", include="usergroup")>  --->
-	    <cfif not IsObject(userTo)>
-			<cfset userTo = model("User").new() />
-	        <cfset flashInsert(success="User #params.userTo.userid# was not found")>
+		<cfset User = model("user").findOne(where="userid=#params.User.userid#", include="usergroup")>
+	    <cfif not IsObject(User)>
+			<cfset User = model("User").new() />
+	        <cfset flashInsert(message="User #params.User.userid# was not found")>
 	    </cfif>
 	</cffunction>
 	
 	<cffunction name="setupDemo">
-		<cfparam name="params.userTo.userid" default="0" />
+		<cfparam name="params.User.userid" default="0" />
 		<cfparam name="SuccessMessage" default="" />
 		<cfset UniFormErrors = {} />
 		<!--- Set up parameters for the Demo --->
@@ -56,7 +41,7 @@
 			
 		<cfif params.Context EQ "Profile">
 			<cfset PageHeading = "Editing an existing User" />
-			<cfset params.userTo.userid = 1 />
+			<cfset params.User.userid = 1 />
 		<cfelse>
 			<cfset PageHeading = "Registering a new User" />
 		</cfif>

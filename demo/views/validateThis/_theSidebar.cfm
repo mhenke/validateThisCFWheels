@@ -13,18 +13,26 @@
 	License.
 	
 --->
-
+<cfoutput>
 <p>Welcome to the <strong>ValidateThis!</strong> Simple Service Integration Demo Page.
 	<ul><strong>Demo Options:</strong>
 		<cfoutput>
 		<cfif params.NoJS>
-			<li><a href="?NoJS=false&Context=#Context#">Turn on JS Validations</a></li>
+			<li>#linkTo(text="Turn on JS Validations",controller="validateThis",action="index",params="NoJS=false&Context=#Context#")#</li>
 		<cfelse>
-			<li><a href="?NoJS=true&Context=#Context#">Turn off JS Validations</a></li>
+			<li>
+			#linkTo(text="Turn off JS Validations",controller="validateThis",action="index",params="NoJS=true&Context=#Context#")#
+			</li>
 		</cfif>
-		<li><a href="?NoJS=#NoJS#">Register a New User</a></li>
-		<li><a href="?Context=Profile&NoJS=#NoJS#">Edit an Existing User</a></li>
-		<li><a href="/index.cfm/validateThis">Back to the Home Page</a></li>
+		<li>
+			#linkTo(text="Register a New User",controller="validateThis",action="index",params="NoJS=#NoJS#")#
+		</li>
+		<li>
+			#linkTo(text="Edit an Existing User",controller="validateThis",action="index",params="Context=Profile&NoJS=#NoJS#")#
+		</li>
+		<li>
+			#linkTo(text="Back to the Home Page",controller="validateThis",action="index")#
+		</li>
 		</cfoutput>
 	</ul>
 </p>
@@ -33,3 +41,4 @@
 <p>All of the validations are driven by a simple xml file, which is used to define the business rules that apply.  You can view the xml file <a href="/models/user.xml" target="_blank">here</a>.</p>
 <p>The code for this demo integrates ValidateThis into the application via the ValidateThis service object, which is simpler than integrating the framework directly into your business objects.  This sample also uses Reactor as an ORM.</p>
 <p>Please refer to <a href="http://www.silverwareconsulting.com/index.cfm/ValidateThis" target="_blank">my blog</a> for more detailed information about the framework.</p>
+</cfoutput>

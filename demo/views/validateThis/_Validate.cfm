@@ -1,6 +1,6 @@
 <cfoutput>
 <!--- We need the UserService to get our Business Object and to Perform an Update --->
-<cfset UserService = UserTO />
+<cfset UserService = User />
 
 <!--- Default the validation failures to an empty struct --->
 <cfset UniFormErrors = {} />
@@ -9,23 +9,22 @@
 <cfif StructKeyExists(Form,"Processing")>
 	<cfset Result = UserService.updateUser(theId=Form.UserId,args=Form,Context=Form.Context) />
 	<cfset UniFormErrors = Result.getFailuresForUniForm() />
-	<cfset SuccessMessage = Result.getSuccessMessage() />
-	<cfset UserTO = Result.getTheObject() />
+	<cfset User = Result.getTheObject() />
 <cfelse>
-	<cfset UserTO = UserService.getUser(theId=Form.UserId) />
+	<cfset User = UserService.getUser(theId=Form.UserId) />
 </cfif>
-<cfif UserTO.hasUserGroup()>
-	<cfset UserGroupId = UserTO.getUserGroup().getUserGroupId() />
+<cfif User.hasUserGroup()>
+	<cfset UserGroupId = User.getUserGroup().getUserGroupId() />
 <cfelse>
 	<cfset UserGroupId = 0 />
 </cfif>
 
 <!--- Get the list of required fields to use to dynamically add asterisks in front of each field --->
-<cfset RequiredFields = UserTO.getRequiredFields(Form.Context) />
+<cfset RequiredFields = User.getRequiredFields(Form.Context) />
 
 <!--- If we want JS validations turned on, get the Script blocks to initialize the libraries and for the validations themselves, and include them in the <head> --->
 <cfif NOT Form.NoJS>
-	<cfset ValInit = UserTO.getInitializationScript() />
+	<cfset ValInit = User.getInitializationScript() />
 	<cfhtmlhead text="#ValInit#" />
 	<!--- Some formatting rules specific to this form --->
 	<cfsavecontent variable="headJS">
@@ -43,7 +42,7 @@
 		</script>
 	</cfsavecontent>	
 	<cfhtmlhead text="#headJS#" />
-	<cfset ValidationScript = UserTO.getValidationScript(Form.Context) />
+	<cfset ValidationScript = User.getValidationScript(Form.Context) />
 	<cfhtmlhead text="#ValidationScript#" />
 </cfif>
 </cfoutput>

@@ -28,7 +28,7 @@ ValidateThisConfig = {JSRoot="/javascripts/",definitionPath="/models/"};
 application.ValidateThis = createObject("component","ValidateThis.ValidateThis").init(ValidateThisConfig);
 </cfscript>
 
-Place the validateThis-0.1.zip plugin in the plugins folder of cfwheels.
+Place the validateThis-XX.XX.zip plugin in the plugins folder of cfwheels.
 
 Reload your cfwheels application.
 Example: http://localhost/index.cfm?reload=true
@@ -44,7 +44,7 @@ http://github.com/bobsilverberg/ValidateThis/blob/master/ValidateThis/docs/DemoS
 In config/settings.cfm place this code:
 <cfset set(dataSourceName="vtDemo")>
  
-Unzip the Demo.zip file into CFWheel's webroot.
+Unzip the Demo-XX-XX.zip file into CFWheel's webroot.
  
 Reload your cfwheels application.
 Example: http://localhost/index.cfm?reload=true
