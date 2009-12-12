@@ -45,7 +45,9 @@ In config/settings.cfm place this code:
 <cfset set(dataSourceName="vtDemo")>
  
 Unzip the Demo-XX-XX.zip file into CFWheel's webroot.
- 
+
+*** WARNING: Demo contains Models\Model.cfc which will be overwritten if you have code there, please copy and paste the Demo Models\Model.cfc code into yours ***
+
 Reload your cfwheels application.
 Example: http://localhost/index.cfm?reload=true
 
