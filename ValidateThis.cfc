@@ -1,4 +1,5 @@
 <cfcomponent>
+
 	 <cffunction name="init">
 		<cfset this.version = "0.9.4">
 		<cfreturn this>
@@ -9,10 +10,39 @@
 		<cfset var loc = {} />
 		<cfset loc.validateThis = application.ValidateThis.validate(objectType="#variables.wheels.class.name#",theObject=this,Context="register") />
 		<cfset loc.failures = loc.validateThis.GETFAILURESASSTRUCT() />
-		
+
 		<cfloop collection = #loc.failures# item = "loc.fieldname">
 			<cfset this.AddError(property="#loc.fieldname#",message="#StructFind(loc.failures, loc.fieldname)#") />
 		</cfloop>
+	</cffunction>
+	
+	<cffunction name="validateJS" returntype="Any" access="public" output="false" hint="" mixin="controller">
+		<!--- Get the list of required fields to use to dynamically add asterisks in front of each field --->
+		<cfset RequiredFields = application.ValidateThis.getRequiredFields(objectType="User",Context=params.Context) />
+		
+		<!--- If we want JS validations turned on, get the Script blocks to initialize the libraries and for the validations themselves, and include them in the <head> --->
+		<cfif NOT params.NoJS>
+			<cfset ValInit = application.ValidateThis.getInitializationScript() />
+			<cfhtmlhead text="#ValInit#" />
+			<!--- Some formatting rules specific to this form --->
+			<cfsavecontent variable="headJS">
+				<script type="text/javascript">
+				$(document).ready(function() {
+					jQuery.validator.setDefaults({ 
+						errorClass: 'errorField', 
+						errorElement: 'p', 
+						errorPlacement: function(error, element) { 
+							error.prependTo( element.parents('div.ctrlHolder') ) 
+						}, 
+						highlight: function() {}
+					});
+				});
+				</script>
+			</cfsavecontent>	
+			<cfhtmlhead text="#headJS#" />
+			<cfset ValidationScript = application.ValidateThis.getValidationScript(objectType="User",Context=params.Context) />
+			<cfhtmlhead text="#ValidationScript#" />
+		</cfif>
 	</cffunction>
 
 	<cffunction name="CheckDupNickname" access="public" output="false" returntype="any" hint="Checks for a duplicate UserName." mixin="model">
@@ -86,4 +116,5 @@
 			<cfreturn "" />
 		</cfif>
 	</cffunction>
+	
 </cfcomponent>

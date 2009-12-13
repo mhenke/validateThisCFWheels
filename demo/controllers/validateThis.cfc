@@ -5,13 +5,9 @@
 	</cffunction>
 	
 	<cffunction name="create">
-		
 		<!--- populate user object with form values --->
 		<cfset User = model("user").new(params.User) />
 		
-		<!--- populate user object with form values --->
-		<cfset User = model("user").new(params.User) />
-
 		<cfset existsUser = model("user").exists(key=params.userid) />
 
 		<cfif existsUser>
@@ -47,35 +43,6 @@
 		</cfif>
 		
 		<cfset usergroup = model("UserGroup").findAll() />
-	</cffunction>
-	
-	<cffunction name="validateJS">
-		<!--- Get the list of required fields to use to dynamically add asterisks in front of each field --->
-		<cfset RequiredFields = application.ValidateThis.getRequiredFields(objectType="User",Context=params.Context) />
-		
-		<!--- If we want JS validations turned on, get the Script blocks to initialize the libraries and for the validations themselves, and include them in the <head> --->
-		<cfif NOT params.NoJS>
-			<cfset ValInit = application.ValidateThis.getInitializationScript() />
-			<cfhtmlhead text="#ValInit#" />
-			<!--- Some formatting rules specific to this form --->
-			<cfsavecontent variable="headJS">
-				<script type="text/javascript">
-				$(document).ready(function() {
-					jQuery.validator.setDefaults({ 
-						errorClass: 'errorField', 
-						errorElement: 'p', 
-						errorPlacement: function(error, element) { 
-							error.prependTo( element.parents('div.ctrlHolder') ) 
-						}, 
-						highlight: function() {}
-					});
-				});
-				</script>
-			</cfsavecontent>	
-			<cfhtmlhead text="#headJS#" />
-			<cfset ValidationScript = application.ValidateThis.getValidationScript(objectType="User",Context=params.Context) />
-			<cfhtmlhead text="#ValidationScript#" />
-		</cfif>
 	</cffunction>
 	
 </cfcomponent>
