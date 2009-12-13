@@ -34,25 +34,23 @@
             validationMessage="Validations: Custom - must be unique. Try ''BobRules''.",
 			class="textInput")#
 			
-<div class="ctrlHolder">
-<label for="UserPass"><em>*</em> Password</label>
-
-
-<input name="User[UserPass]" id="UserPass" value="" size="35" maxlength="50" class="textInput" type="password">
-		
-
-<p class="formHint">Validations: Required, Must be between 5 and 10 characters, Must be the same as the Verify password field.</p>
-</div>	
+		#validateThisField(
+			formHelper="passwordField",
+  			label="Password",
+            objectName="User",
+			labelPlacement="before",
+            property="UserPass",
+            validationMessage="Validations: Required, Must be between 5 and 10 characters, Must be the same as the Verify Password field.",
+			class="textInput")#
 			
-<div class="ctrlHolder">
-<label for="VerifyPassword"><em>*</em> Verify Password</label>
-
-
-<input name="User[VerifyPassword]" id="VerifyPassword" value="" size="35" maxlength="50" class="textInput" type="password">
-		
-
-<p class="formHint">Validations: Required, Must be between 5 and 10 characters, Must be the same as the Verify password field.</p>
-</div>	
+		#validateThisField(
+			formHelper="passwordField",
+  			label="Verify Password",
+            objectName="User",
+			labelPlacement="before",
+            property="VerifyPassword",
+            validationMessage="Validations: Required, Must be between 5 and 10 characters, Must be the same as the Password field.",
+			class="textInput")#
 		
 		#validateThisSelect(
 			property="UserGroupId",
