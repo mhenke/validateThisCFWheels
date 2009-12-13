@@ -23,7 +23,6 @@
 		<cfset User = model("user").findOne(where="userid=#params.User.userid#", include="usergroup")>
 	    <cfif not IsObject(User)>
 			<cfset User = model("User").new() />
-	        <cfset flashInsert(message="User #params.User.userid# was not found")>
 	    </cfif>
 	</cffunction>
 	

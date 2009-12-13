@@ -92,14 +92,14 @@
 		
 		<div class="ctrlHolder">
 		<p class="label">Do you like Cheese?</p>
-		#radioButtonTag(label="Yes", name="likeCheese", value="1", labelPlacement="after", class="inlineLabel", for="LikeCheese-1", checked=iif(User.likeCheese EQ 1,true,false),class="inlineLabel",id="LikeCheese-1")#
-		#radioButtonTag(label="No", name="likeCheese", value="0", labelPlacement="after", class="inlineLabel", for="LikeCheese-0", checked=iif(User.likeCheese EQ 0,true,false),class="inlineLabel",id="LikeCheese-2")#
+		#radioButtonTag(label="Yes", name="USER[likeCheese]", value="1", labelPlacement="after", class="inlineLabel", for="LikeCheese-1", checked=iif(User.likeCheese EQ 1,true,false),class="inlineLabel",id="LikeCheese-1")#
+		#radioButtonTag(label="No", name="USER[likeCheese]", value="0", labelPlacement="after", class="inlineLabel", for="LikeCheese-0", checked=iif(User.likeCheese EQ 1,false,true),class="inlineLabel",id="LikeCheese-2")#
 		</div>
 		
 		<div class="ctrlHolder">
 		<p class="label">Do you like Chocolate?</p>
-		#radioButtonTag(label="Yes", name="likeChocolate", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,true,false),class="inlineLabel",id="likeChocolate-1")#
-		#radioButtonTag(label="No", name="likeChocolate", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 0,true,false),class="inlineLabel",id="likeChocolate-1")#
+		#radioButtonTag(label="Yes", name="USER[likeChocolate]", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,true,false),class="inlineLabel",id="likeChocolate-1")#
+		#radioButtonTag(label="No", name="USER[likeChocolate]", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,false,true),class="inlineLabel",id="likeChocolate-1")#
 		</div>
 		
 		#validateThisField(
@@ -120,11 +120,11 @@
 		
 		<div class="ctrlHolder">
 		<p class="label">Allow Communitcation</p>
-		#radioButtonTag(label="Yes", name="ALLOWCOMMUNICATION", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,true,false),class="inlineLabel",id="AllowCommunication-1")#
-		#radioButtonTag(label="No", name="ALLOWCOMMUNICATION", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 0,true,false),class="inlineLabel",id="AllowCommunication-2")#
+		#radioButtonTag(label="Yes", name="USER[ALLOWCOMMUNICATION]", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,true,false),class="inlineLabel",id="AllowCommunication-1")#
+		#radioButtonTag(label="No", name="USER[ALLOWCOMMUNICATION]", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,false,true),class="inlineLabel",id="AllowCommunication-2")#
 		</div>
 		
-		#selectTag(name="CommunicationMethod", options="Phone,Email,Pony Express",label="Communication Method", selected="#User.CommunicationMethod#", prependToLabel="<div class='ctrlHolder'>", append="<p class='formHint'>Validations: Required if Allow Communication? is true.</p></div>",class="selectInput",id="CommunicationMethod")#
+		#selectTag(name="USER[CommunicationMethod]", options="Phone,Email,Pony Express",includeBlank="Select one...",label="Communication Method", selected="#User.CommunicationMethod#", prependToLabel="<div class='ctrlHolder'>", append="<p class='formHint'>Validations: Required if Allow Communication? is true.</p></div>",class="selectInput",id="CommunicationMethod")#
 	
 	</fieldset>
 
