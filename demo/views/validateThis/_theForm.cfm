@@ -98,8 +98,8 @@
 		
 		<div class="ctrlHolder">
 		<p class="label">Do you like Chocolate?</p>
-		#radioButtonTag(label="Yes", name="USER[likeChocolate]", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,true,false),class="inlineLabel",id="likeChocolate-1")#
-		#radioButtonTag(label="No", name="USER[likeChocolate]", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,false,true),class="inlineLabel",id="likeChocolate-1")#
+		#radioButtonTag(label="Yes", name="USER[likeChocolate]", value="1", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,true,false),class="inlineLabel",id="likeChocolate-1")#
+		#radioButtonTag(label="No", name="USER[likeChocolate]", value="0", labelPlacement="after", class="inlineLabel", checked=iif(User.likeChocolate EQ 1,false,true),class="inlineLabel",id="likeChocolate-1")#
 		</div>
 		
 		#validateThisField(
@@ -120,8 +120,8 @@
 		
 		<div class="ctrlHolder">
 		<p class="label">Allow Communitcation</p>
-		#radioButtonTag(label="Yes", name="USER[ALLOWCOMMUNICATION]", value="Yes", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,true,false),class="inlineLabel",id="AllowCommunication-1")#
-		#radioButtonTag(label="No", name="USER[ALLOWCOMMUNICATION]", value="No", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,false,true),class="inlineLabel",id="AllowCommunication-2")#
+		#radioButtonTag(label="Yes", name="USER[ALLOWCOMMUNICATION]", value="1", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,true,false),class="inlineLabel",id="AllowCommunication-1")#
+		#radioButtonTag(label="No", name="USER[ALLOWCOMMUNICATION]", value="0", labelPlacement="after", class="inlineLabel", checked=iif(User.ALLOWCOMMUNICATION EQ 1,false,true),class="inlineLabel",id="AllowCommunication-2")#
 		</div>
 		
 		#selectTag(name="USER[CommunicationMethod]", options="Phone,Email,Pony Express",includeBlank="Select one...",label="Communication Method", selected="#User.CommunicationMethod#", prependToLabel="<div class='ctrlHolder'>", append="<p class='formHint'>Validations: Required if Allow Communication? is true.</p></div>",class="selectInput",id="CommunicationMethod")#
