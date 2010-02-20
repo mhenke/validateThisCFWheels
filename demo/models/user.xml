@@ -17,7 +17,7 @@
 		<property name="Nickname">
 			<rule type="custom" failureMessage="That Nickname is already taken.  Please try a different Nickname."> <!-- Specifying no context is the same as specifying a context of "*" -->
 				<param methodname="CheckDupNickname" />
-				<param remoteURL="ValidateThis/CheckDupNickname" />
+				<param remoteURL="CheckDupNickname" />
 			</rule>
 		</property>
 		<property name="UserPass" desc="Password">

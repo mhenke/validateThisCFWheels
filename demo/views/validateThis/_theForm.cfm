@@ -100,12 +100,12 @@
 			<p class="label">Do you like Cheese?</p>
 				<label for="likeCheese-1" class="inlineLabel">
 				#radioButtonTag(
-				name="likeCheese", objectName="User", property="LikeCheese", value=1, id="LikeCheese"
+				name="User[LikeCheese]", objectName="User", property="LikeCheese", value=1, id="LikeCheese"
 				)#Yes
 				</label>
 				<label for="likeCheese-0" class="inlineLabel">
 				#radioButtonTag(
-				name="likeCheese", objectName="User", property="LikeCheese", value=0, id="LikeCheese", checked="1"
+				name="User[LikeCheese]", objectName="User", property="LikeCheese", value=0, id="LikeCheese", checked="1"
 				)#No
 				</label>
 		</div>
@@ -114,12 +114,12 @@
 			<p class="label">Do you like Chocolate?</p>
 				<label for="likeChocolate-1" class="inlineLabel">
 				#radioButtonTag(
-				name="likeChocolate", objectName="User", property="LikeChocolate", value=1, id="LikeChocolate"
+				name="User[LikeChocolate]", objectName="User", property="LikeChocolate", value=1, id="LikeChocolate"
 				)#Yes
 				</label>
 				<label for="likeChocolate-0" class="inlineLabel">
 				#radioButtonTag(
-				name="likeChocolate", objectName="User", property="LikeChocolate", value=0, id="LikeChocolate", checked="1"
+				name="User[LikeChocolate]", objectName="User", property="LikeChocolate", value=0, id="LikeChocolate", checked="1"
 				)#No
 				</label>
 		</div>
@@ -146,12 +146,12 @@
 			<p class="label">Allow Communication</p>
 				<label for="AllowCommunication-1" class="inlineLabel">
 				#radioButtonTag(
-				name="AllowCommunication", objectName="User", property="AllowCommunication", value=1, id="AllowCommunication1"
+				name="User[AllowCommunication]", objectName="User", property="AllowCommunication", value=1, id="AllowCommunication"
 				)#Yes
 				</label>
 				<label for="AllowCommunication-0" class="inlineLabel">
 				#radioButtonTag(
-				name="AllowCommunication", objectName="User", property="AllowCommunication", value=0, id="AllowCommunication2", checked="1"
+				name="User[AllowCommunication]", objectName="User", property="AllowCommunication", value=0, id="AllowCommunication", checked="1"
 				)#No
 				</label>
 		</div>
