@@ -16,9 +16,11 @@
 <cfsetting enablecfoutputonly="true" />
 <cfsetting showDebugOutput="false" />
 
-<cfparam name="url.Nickname" default="" />
+<cfif not StructKeyExists(params, "USER[NICKNAME]")>
+	<cfset StructInsert(params, "USER[NICKNAME]", "")>
+</cfif>
 
-<cfif url.Nickname EQ "BobRules">
+<cfif StructFind(params, "user[nickname]") EQ "BobRules">
 	<cfoutput>false</cfoutput>
 <cfelse>
 	<cfoutput>true</cfoutput>

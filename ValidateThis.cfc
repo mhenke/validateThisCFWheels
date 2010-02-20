@@ -1,7 +1,7 @@
 <cfcomponent>
 
 	 <cffunction name="init">
-		<cfset this.version = "0.9.4">
+		<cfset this.version = "0.1.2">
 		<cfreturn this>
 	</cffunction>
 	
@@ -10,7 +10,9 @@
 		<cfset var loc = {} />
 		<cfset loc.validateThis = application.ValidateThis.validate(objectType="#variables.wheels.class.name#",theObject=this,Context="register") />
 		<cfset loc.failures = loc.validateThis.GETFAILURESASSTRUCT() />
-
+		<cfdump var="#loc.validateThis.GETERRORS()#">
+		<cfdump var="#loc.validateThis#">
+		<cfabort>
 		<cfloop collection = #loc.failures# item = "loc.fieldname">
 			<cfset this.AddError(property="#loc.fieldname#",message="#StructFind(loc.failures, loc.fieldname)#") />
 		</cfloop>
@@ -43,59 +45,6 @@
 			<cfset ValidationScript = application.ValidateThis.getValidationScript(objectType="User",Context=params.Context) />
 			<cfhtmlhead text="#ValidationScript#" />
 		</cfif>
-	</cffunction>
-
-	<cffunction name="CheckDupNickname" access="public" output="false" returntype="any" hint="Checks for a duplicate UserName." mixin="model">
-		<!--- This is just a "mock" method to test out the custom validation type --->
-		<cfset var ReturnStruct = StructNew() />
-		<cfset ReturnStruct.IsSuccess = false />
-		<cfset ReturnStruct.FailureMessage = "That Nickname has already been used. Try to be more original!" />
-		<cfif $propertyvalue("Nickname") NEQ "BobRules">
-			<cfset ReturnStruct = StructNew() />
-			<cfset ReturnStruct.IsSuccess = true />
-		</cfif>
-		<cfreturn ReturnStruct />		
-	</cffunction>
-			 
-	<cffunction name="validateThisField" returntype="string" access="public" output="false" mixin="controller">
-		<cfargument name="property" type="String" required="true" />
-		<cfargument name="label" type="String" required="true" />
-		<cfargument name="validationMessage" type="String" default="" />
-		
-		<cfset var return = "" />
-		
-		<cfset arguments.id = arguments.property/>
-		<cfset arguments.label = "#isRequired(arguments.id)##arguments.label#"/>
-		<cfset arguments.prependToLabel="<div class='ctrlHolder'>#isErrorMsg(arguments.id)#" />
-		<cfset arguments.append='<p class="formHint">#arguments.validationMessage#</p></div>' />
-		
-		<cfset return = arguments.formHelper & "(argumentCollection=arguments)"/>
-		
-		<cfreturn evaluate(return)> 
-	</cffunction>
-	
-	<cffunction name="validateThisSelect" returntype="string" access="public" output="false" mixin="controller">
-		<cfargument name="property" type="String" required="true" />
-		<cfargument name="label" type="String" required="true" />
-		<cfargument name="validationMessage" type="String" default="" />
-	
-		<cfset var return = "" />
-		
-		<cfset arguments.id = arguments.property />
-		
-		<cfsavecontent variable="return">	
-		<cfoutput>	
-			<div class="ctrlHolder">
-				#isErrorMsg(arguments.id)#
-				<label for="#arguments.label#">#isRequired(arguments.id)##arguments.label#</label>
-					<cfset arguments.label = "" />
-					 #select(argumentCollection=arguments)#
-				<p class="formHint">#arguments.validationMessage#</p>
-			</div>
-		</cfoutput>
-		</cfsavecontent>
-		
-		<cfreturn return> 
 	</cffunction>
 	
 	<!--- These UDFs are only required to make the demo look pretty --->

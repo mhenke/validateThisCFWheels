@@ -1,5 +1,5 @@
 <cfcomponent extends="Controller">
- 
+
 	<cffunction name="init">
 		 <cfset filters(through="setupDemo,validateJS",only="index,create") >
 	</cffunction>
@@ -7,9 +7,9 @@
 	<cffunction name="create">
 		<!--- populate user object with form values --->
 		<cfset User = model("user").new(params.User) />
-
-		<cfset existsUser = model("user").exists(key=params.userid) />
 		
+		<cfset existsUser = model("user").exists(key=params.userid) />
+
 		<cfif existsUser>
 			<cfset resultSave = model("user").updateByKey(params.userid, params.User)>
 		<cfelse>
@@ -23,6 +23,7 @@
 		<cfset User = model("user").findOne(where="userid=#params.User.userid#", include="usergroup")>
 	    <cfif not IsObject(User)>
 			<cfset User = model("User").new() />
+	        <cfset flashInsert(message="User #params.User.userid# was not found")>
 	    </cfif>
 	</cffunction>
 	
@@ -44,4 +45,7 @@
 		<cfset usergroup = model("UserGroup").findAll() />
 	</cffunction>
 	
+	<cffunction name="CheckDupNickname">
+		<cfset renderPage(layout=false) />
+	</cffunction>
 </cfcomponent>

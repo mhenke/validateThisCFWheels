@@ -3,12 +3,9 @@
 		<cfset table("tbluser")>
 		<cfset belongsTo(name="UserGroup", foreignKey="UserGroupId")>
 		
-		<cfset this.UserGroup = "" >
-		
-		<!--- non persistant model property --->
+		<!--- non persistent model property --->
 		<cfset this.VerifyPassword  = "" >
-		
-		<!--- <cfset validatesPresenceOf(properties="UserName,NickName,UserPass")> --->
+
 		<cfset beforeValidation("ValidateThis")>
-	</cffunction>	 
+	</cffunction>	
 </cfcomponent>
