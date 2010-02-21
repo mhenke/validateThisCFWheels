@@ -49,7 +49,8 @@
 		<property name="LastName" desc="Last Name">
 			<rule type="required" contexts="Profile" />
 			<rule type="required" contexts="Register">
-				<param DependentPropertyName="User[FirstName]" />
+				<param DependentPropertyName="FirstName" />
+				<param DependentFieldName="User[FirstName]" />
 			</rule>
 		</property>
 		<property name="LikeOther" desc="What do you like?">
@@ -64,7 +65,8 @@
 		<property name="CommunicationMethod" desc="Communication Method">
 			<rule type="required" contexts="*"
 				failureMessage="If you are allowing communication, you must choose a communication method.">
-				<param DependentPropertyName="User[AllowCommunication]" />
+				<param DependentPropertyName="AllowCommunication" />
+				<param DependentFieldName="User[AllowCommunication]" />
 				<param DependentPropertyValue="1" />
 			</rule>
 		</property>
