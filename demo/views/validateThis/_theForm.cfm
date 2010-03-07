@@ -2,6 +2,7 @@
 <cfparam name="User.likeChocolate" default="" />
 <cfparam name="User.ALLOWCOMMUNICATION" default="" />
 <cfparam name="User.CommunicationMethod" default="" />
+<cfparam name="params.key" default="" />
 
 <cfoutput>
 <h1>ValidateThis! Integrated BO Demo - with CFWheels</h1>
@@ -11,7 +12,7 @@
 <div>#errorMessagesFor("User")#</div>
 
 <div class="formContainer">
-	#startFormTag(action="create", name="frmMain", class="uniForm", id="frmMain")#
+	#startFormTag(action="#params.context#", name="frmMain", class="uniForm", id="frmMain")#
 
 	<fieldset class="inlineLabels">
 		<legend>Access Information</legend>
@@ -170,7 +171,7 @@
 	</fieldset>
 
 	<div class="buttonHolder">
-		<input type="hidden" name="userid" value="#params.User.userid#" />
+		<input type="hidden" name="userid" value="#params.key#" />
 		<input type="hidden" name="Context" value="#params.context#" />
 		<input type="hidden" name="NoJS" value="#params.noJS#" />
 		<input type="hidden" name="Processing" value="true" />

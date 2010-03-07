@@ -18,7 +18,7 @@
 <html>
 	<head>
 		<title>ValidateThis! Demo Page</title>
-		#styleSheetLinkTag("demostyle,uni-form-styles")#
+		#styleSheetLinkTag("demostyle,uni-form-styles,wheels")#
 	</head>
 	<body>
 	<div id="container">

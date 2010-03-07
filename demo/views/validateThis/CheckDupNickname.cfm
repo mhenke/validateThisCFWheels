@@ -16,11 +16,11 @@
 <cfsetting enablecfoutputonly="true" />
 <cfsetting showDebugOutput="false" />
 
-<cfif not StructKeyExists(params, "USER[NICKNAME]")>
-	<cfset StructInsert(params, "USER[NICKNAME]", "")>
+<cfif not StructKeyExists(params,"USER[NICKNAME]")>
+	<cfset StructInsert(params, "USER[NICKNAME]", "") />
 </cfif>
 
-<cfif StructFind(params, "user[nickname]") EQ "BobRules">
+<cfif StructFind(params, "USER[NICKNAME]") EQ "BobRules">
 	<cfoutput>false</cfoutput>
 <cfelse>
 	<cfoutput>true</cfoutput>

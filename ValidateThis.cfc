@@ -10,12 +10,16 @@
 		<cfset var loc = {} />
 		<cfset loc.validateThis = application.ValidateThis.validate(objectType="#variables.wheels.class.name#",theObject=this,Context="register") />
 		<cfset loc.failures = loc.validateThis.GETFAILURESASSTRUCT() />
-		<cfdump var="#loc.validateThis.GETERRORS()#">
-		<cfdump var="#loc.validateThis#">
-		<cfabort>
+		
 		<cfloop collection = #loc.failures# item = "loc.fieldname">
 			<cfset this.AddError(property="#loc.fieldname#",message="#StructFind(loc.failures, loc.fieldname)#") />
 		</cfloop>
+		
+		<!---
+		<cfdump var="#loc.validateThis.GETERRORS()#">
+		<cfdump var="#loc.validateThis#">
+		<cfabort>
+		--->
 	</cffunction>
 	
 	<cffunction name="validateJS" returntype="Any" access="public" output="false" hint="" mixin="controller">
@@ -57,47 +61,6 @@
 			<cfset ReturnStruct.IsSuccess = true />
 		</cfif>
 		<cfreturn ReturnStruct />		
-	</cffunction>
-			 
-	<cffunction name="validateThisField" returntype="string" access="public" output="false" mixin="controller">
-		<cfargument name="property" type="String" required="true" />
-		<cfargument name="label" type="String" required="true" />
-		<cfargument name="validationMessage" type="String" default="" />
-		
-		<cfset var return = "" />
-		
-		<cfset arguments.id = arguments.property/>
-		<cfset arguments.label = "#isRequired(arguments.id)##arguments.label#"/>
-		<cfset arguments.prependToLabel="<div class='ctrlHolder'>#isErrorMsg(arguments.id)#" />
-		<cfset arguments.append='<p class="formHint">#arguments.validationMessage#</p></div>' />
-		
-		<cfset return = arguments.formHelper & "(argumentCollection=arguments)"/>
-		
-		<cfreturn evaluate(return)> 
-	</cffunction>
-	
-	<cffunction name="validateThisSelect" returntype="string" access="public" output="false" mixin="controller">
-		<cfargument name="property" type="String" required="true" />
-		<cfargument name="label" type="String" required="true" />
-		<cfargument name="validationMessage" type="String" default="" />
-	
-		<cfset var return = "" />
-		
-		<cfset arguments.id = arguments.property />
-		
-		<cfsavecontent variable="return">	
-		<cfoutput>	
-			<div class="ctrlHolder">
-				#isErrorMsg(arguments.id)#
-				<label for="#arguments.label#">#isRequired(arguments.id)##arguments.label#</label>
-					<cfset arguments.label = "" />
-					 #select(argumentCollection=arguments)#
-				<p class="formHint">#arguments.validationMessage#</p>
-			</div>
-		</cfoutput>
-		</cfsavecontent>
-		
-		<cfreturn return> 
 	</cffunction>
 	
 	<!--- These UDFs are only required to make the demo look pretty --->
