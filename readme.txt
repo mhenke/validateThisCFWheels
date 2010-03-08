@@ -48,4 +48,6 @@ Example: http://localhost/index.cfm?reload=true
 
 ValidateThis/CFWheels Demo: http://localhost/index.cfm/validateThis
 
-You should be good to go now.
+You should be good to go now. 
+
+testing twitter service hook
